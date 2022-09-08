@@ -1,0 +1,105 @@
+
+
+<ion-content >
+
+
+  <div id="container">
+    <h2 style="text-align: center;">Trending</h2>
+    <p style="text-align: center;">See What the Github community is most excited about  Today</p>
+   
+      <ion-item>
+        <ion-col size="4">
+            <!-- Default Segment -->
+          <ion-segment (ionChange)="segmentChanged($event)" [value]="category">
+            <ion-segment-button value="Repositories">
+              <ion-label>Repositories</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="Developers">
+              <ion-label>Developers</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-col>
+        <ion-col></ion-col>
+        <ion-col size="6">
+          <ion-row>
+            <ion-select placeholder="Spoken Language Any">
+              <ion-select-option value="apples">Apples</ion-select-option>
+              <ion-select-option value="oranges">Oranges</ion-select-option>
+              <ion-select-option value="bananas">Bananas</ion-select-option>
+            </ion-select>
+            <ion-select placeholder="Language Any">
+              <ion-select-option value="apples">Apples</ion-select-option>
+              <ion-select-option value="oranges">Oranges</ion-select-option>
+              <ion-select-option value="bananas">Bananas</ion-select-option>
+            </ion-select>
+            <ion-select placeholder="Data Range Today">
+              <ion-select-option value="apples">Apples</ion-select-option>
+              <ion-select-option value="oranges">Oranges</ion-select-option>
+              <ion-select-option value="bananas">Bananas</ion-select-option>
+            </ion-select>
+          </ion-row>
+        </ion-col>
+      </ion-item>
+  <div *ngIf="category  == 'Repositories'">
+    <div  *ngFor="let item of arrdata" class="item" style="white-space: normal; border: 1px solid lightgray;">
+      <div class="inside-div">
+            <h2><ion-icon name="bookmark-outline"></ion-icon> {{item.username}} / {{item.repositoryName}}</h2>
+
+
+            <p>{{item.description}}</p>
+
+            <ion-row>
+              <ion-icon name="ellipse-outline" style="margin-right: 5px;"></ion-icon>
+            
+              {{item.language}}
+              <ion-icon name="star" style="margin-left: 1rem; margin-right:5px"></ion-icon>
+              {{item.totalStars}}
+              <ion-icon name="git-branch-outline" style="margin-left: 1rem; margin-right:5px"></ion-icon>
+              {{item.forks}}
+            </ion-row>
+  
+    
+  
+      </div>
+
+    </div>
+  </div>
+
+    <div *ngIf="category  == 'Developers'">
+      <div  *ngFor="let item of devdata" class="item" style="white-space: normal; border: 1px solid lightgray;">
+        <div class="inside-div-dev">
+              <div class="right">
+                <div class="img">
+                <ion-avatar>
+                  <img alt="Silhouette of a person's head" src="{{item.avatar}}" />
+                </ion-avatar>
+              </div>
+                <div class="name">
+                  <h2>{{item.name}}</h2>
+                  
+                {{item.username}}
+                </div>
+                
+              </div>
+              
+              <div class="left">
+                <div class="popular" *ngIf="item.popularRepository"></div>
+                
+                <p style="color: #e25822;"><ion-icon name="flame-outline"></ion-icon> popular Repo</p>
+                <p>  <ion-icon name="bookmark-outline"></ion-icon>  {{item.popularRepository.repositoryName}}</p>
+                <span><p *ngIf="item.popularRepository.description != null">{{item.popularRepository.description}}</p>  <a href="">{{item.popularRepository.url}}</a> </span>
+                
+              </div>
+  
+  
+              
+    
+      
+    
+        </div>
+  
+      </div>
+    </div>
+</div>
+  
+</ion-content>
